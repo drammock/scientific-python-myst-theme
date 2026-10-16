@@ -14,6 +14,20 @@ main {
    * doesn't grow <main> to push the footer offscreen.
    */
   min-height: 0;
+
+  /* Align main content with the navbar (2rem padding, max 1440px).
+   * text starts under the logo, and the page contents starts near the search box.
+   */
+  @media (min-width: 1024px) {
+    grid-template-columns:
+      [screen-start] calc(max(2rem, 50% - 720px) + 1.25rem)
+      [screen-inset-start page-start page-inset-start body-outset-start body-start body-inset-start middle-start gutter-left-start gutter-left-end gutter-right-start]
+      1fr
+      [gutter-right-end middle-end body-inset-end body-end body-outset-end]
+      20.5rem
+      [page-inset-end page-end screen-inset-end] max(2rem, 50% - 720px)
+      [screen-end];
+  }
 }
 
 .footer {
