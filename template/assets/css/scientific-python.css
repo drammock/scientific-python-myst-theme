@@ -61,7 +61,15 @@ main {
   @media (max-width: 640px) {
     & .outer-grid {
       grid-template-columns: 1fr;
-      justify-items: start;
+      justify-items: center;
+      text-align: center;
+    }
+
+    /* One centered, wrapping row of icons instead of a 2-column grid */
+    & .footer-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
   }
 
