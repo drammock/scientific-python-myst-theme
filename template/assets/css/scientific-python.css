@@ -47,8 +47,10 @@ main {
 
   /* Outer content grid */
   & .outer-grid {
-    /* logo, project description, link columns, social icons */
-    grid-template-columns: 2fr 6fr 8fr 3fr;
+    /* logo, project description, link columns, social icons;
+     * link columns are "auto" for better whitespace distribution
+     * (handles case where longest link in one col is much different than other col) */
+    grid-template-columns: 2fr 6fr auto 3fr;
     column-gap: 4rem;
     align-items: center;
     margin: 0rem 4rem;
@@ -58,12 +60,20 @@ main {
     }
   }
 
-  @media (max-width: 640px) {
+  /* Tighten spacing on mid-size screens to give the columns more room */
+  @media (max-width: 1279px) {
+    & .outer-grid {
+      column-gap: 2rem;
+      margin: 0;
+    }
+  }
+
+  /* Stack everything vertically below the theme's large breakpoint */
+  @media (max-width: 1023px) {
     & .outer-grid {
       grid-template-columns: 1fr;
       justify-items: center;
       text-align: center;
-      margin: 0;
     }
 
     /* One centered, wrapping row of icons instead of a 2-column grid */
@@ -92,6 +102,11 @@ main {
   & .footer-links {
     column-gap: 1.5rem;
     line-height: normal;
+
+    /* Two columns that hug the link text, so no dead space sits beside them */
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(2, max-content);
+    }
 
     & a {
       color: white;
